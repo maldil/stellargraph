@@ -155,7 +155,7 @@ def normalized_laplacian(adj, symmetric=True):
 
 def calculate_laplacian(adj):
     D = np.diag(np.ravel(adj.sum(axis=0)) ** (-0.5))
-    adj = np.dot(D, np.dot(adj, D))
+    adj = np.linalg.multi_dot([D, adj, D])
     return adj
 
 
